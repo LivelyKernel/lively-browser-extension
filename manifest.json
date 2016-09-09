@@ -1,0 +1,26 @@
+{
+  "name": "lively-browser-extension",
+  "manifest_version": 2,
+  "version": "1.0.0",
+  "description": "Support for additional lively.morphic features, e.g. access to the OS clipboard",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "run_at": "document_idle",
+    "js": ["inject.js"]
+  }],
+  "permissions": [
+    "contextMenus",
+    "clipboardRead",
+    "clipboardWrite"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://lively-web.org; object-src 'self'",
+  "applications": {
+    "gecko": {
+      "id": "ext@lively.next"
+    }
+  }
+}
